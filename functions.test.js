@@ -77,10 +77,12 @@ test("Admin should be in usernames", () => {
 
 // Async data (Promise)
 test("User fetched name should be Leanne Graham", () => {
+  // verify that a certain number of assertions are called. Otherwise a fulfilled promise would not fail the test.
   expect.assertions(1);
   return functions.fetchUser().then(data => {
     expect(data.name).toEqual("Leanne Graham");
   });
+  // be sure to return the promise - if you omit this return statement, your test will complete before the promise returned from fetchData resolves and then() has a chance to execute the callback.
 });
 // NOTE: omitting the 'expect.assertions' AND 'return' will preclude test from failing
 
